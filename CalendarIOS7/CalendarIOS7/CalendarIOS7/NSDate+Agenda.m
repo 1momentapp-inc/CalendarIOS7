@@ -26,7 +26,7 @@ const char * const JmoLocaleStoreKey = "jmo.locale";
     NSCalendar* cal = objc_getAssociatedObject(self, JmoCalendarStoreKey);
     if (nil == cal) {
         cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        [cal setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+        [cal setTimeZone:[NSTimeZone systemTimeZone]];
         [cal setLocale:[self locale]];
         [self setGregorianCalendar:cal];
         
@@ -43,7 +43,7 @@ const char * const JmoLocaleStoreKey = "jmo.locale";
 {
     NSLocale *locale  = objc_getAssociatedObject(self, JmoLocaleStoreKey);
     if (nil == locale) {
-        locale = [[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"];
+        locale = [NSLocale systemLocale];
         [self setLocal:locale];
     }
     return locale;

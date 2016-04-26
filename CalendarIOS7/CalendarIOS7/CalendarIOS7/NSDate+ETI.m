@@ -28,14 +28,14 @@
 
 -(NSDate *) toLocalTime
 {
-    NSTimeZone *tz = [NSTimeZone localTimeZone];
+    NSTimeZone *tz = [NSTimeZone systemTimeZone];
     NSInteger seconds = [tz secondsFromGMTForDate: self];
     return [NSDate dateWithTimeInterval: seconds sinceDate: self];
 }
 
 -(NSDate *) toGlobalTime
 {
-    NSTimeZone *tz = [NSTimeZone localTimeZone];
+    NSTimeZone *tz = [NSTimeZone systemTimeZone];
     NSInteger seconds = -[tz secondsFromGMTForDate: self];
     return [NSDate dateWithTimeInterval: seconds sinceDate: self];
 }

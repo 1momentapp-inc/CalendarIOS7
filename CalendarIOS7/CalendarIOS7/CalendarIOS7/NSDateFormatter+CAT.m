@@ -10,6 +10,7 @@
 
 
 static NSString *const kCALDateFormatterType_dd_MM_yyyy = @"dd/MM/yyyy";
+static NSString *const kCALDateFormatterType_MM_dd_yy = @"MM/dd/yy";
 static NSString *const kCALDateFormatterType_HH_mm = @"HH:mm";
 static NSString *const kCALDateFormatterType_EEEE_d_MMMM_yyyy = @"EEEE d MMMM yyyy";
 
@@ -20,7 +21,10 @@ NSString * dateFormatterFormatFromType(CALDateFormatterType type)
     switch (type) {
         case CALDateFormatterType_dd_MM_yyyy:
             return kCALDateFormatterType_dd_MM_yyyy;
-    
+    	
+    	case CALDateFormatterType_MM_dd_yy:
+    		return kCALDateFormatterType_MM_dd_yy;
+    		
         case CALDateFormatterType_HH_mm:
             return kCALDateFormatterType_HH_mm;
             
@@ -43,11 +47,11 @@ NSString * dateFormatterFormatFromType(CALDateFormatterType type)
     NSDateFormatter *dateFormatter = nil;
 
     if (nil != format) {
-        [threadDict objectForKey:format];
+        dateFormatter = [threadDict objectForKey:format];
         if (dateFormatter == nil) {
             dateFormatter = [[NSDateFormatter alloc] init];
-            dateFormatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-            dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"fr_FR"];
+            dateFormatter.timeZone = [NSTimeZone systemTimeZone];
+            dateFormatter.locale = [NSLocale systemLocale];
             dateFormatter.dateFormat = format;
             [threadDict setValue:dateFormatter forKey:format];
         }

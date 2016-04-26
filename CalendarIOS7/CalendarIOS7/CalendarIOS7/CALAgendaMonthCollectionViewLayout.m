@@ -22,11 +22,19 @@ static NSString * const CALAgendaMonthCollectionViewLayoutHeader = @"CALAgendaMo
 {
     self = [self init];
     if (self) {
-        self.headerReferenceSize = CGSizeMake(width, 64.0f);
-		
+        CGSize result = [[UIScreen mainScreen] bounds].size;
+
+        self.headerReferenceSize = CGSizeMake(width, 50.0f);
 		CGFloat minSpacingWidth = 1.;
 		CGFloat maxWidth = floor((width - minSpacingWidth * 6) / 7.);
-		self.itemSize = CGSizeMake(maxWidth, maxWidth);        
+        
+        if(result.height == 480)         {
+            self.itemSize = CGSizeMake(maxWidth, 13.5);
+
+        } else{
+            self.itemSize = CGSizeMake(maxWidth, 28);
+        }
+
         self.minimumLineSpacing = (width - (maxWidth * 7.)) / 6.;
         self.minimumInteritemSpacing = self.minimumLineSpacing;
     }
@@ -37,7 +45,7 @@ static NSString * const CALAgendaMonthCollectionViewLayoutHeader = @"CALAgendaMo
 {
     self = [self init];
     if (self) {
-        self.headerReferenceSize = CGSizeMake(width, 64.0f);
+        self.headerReferenceSize = CGSizeMake(width, 50.0f);
         
         //7 cells by lines
         self.itemSize =itemSize;

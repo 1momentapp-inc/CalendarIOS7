@@ -37,20 +37,20 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        _style = CALDayCollectionViewCellDayUIStyleNone;
+        self.style = CALDayCollectionViewCellDayUIStyleNone;
         
-        _dayLabel = [[UILabel alloc] initWithFrame:self.contentView.bounds];
-		_dayLabel.textAlignment = NSTextAlignmentCenter;
-        [_dayLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:20.0f]];
+        self.dayLabel = [[UILabel alloc] initWithFrame:self.contentView.bounds];
+		self.dayLabel.textAlignment = NSTextAlignmentCenter;
+        [self.dayLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:20.0f]];
 
-        _dayLabel.backgroundColor = [UIColor clearColor];
-        [self addSubview:_dayLabel];
+        self.dayLabel.backgroundColor = [UIColor clearColor];
+        [self addSubview:self.dayLabel];
 
-        _nbEventsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 29.0f, 44.0f, 15.0f)];
-		_nbEventsLabel.textAlignment = NSTextAlignmentRight;
-		_nbEventsLabel.font = [UIFont systemFontOfSize:12.0f];
-        _nbEventsLabel.backgroundColor = [UIColor clearColor];
-		[self addSubview:_nbEventsLabel];
+        self.nbEventsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 29.0f, 44.0f, 15.0f)];
+		self.nbEventsLabel.textAlignment = NSTextAlignmentRight;
+		self.nbEventsLabel.font = [UIFont systemFontOfSize:12.0f];
+        self.nbEventsLabel.backgroundColor = [UIColor clearColor];
+		[self addSubview:self.nbEventsLabel];
         
     }
     return self;
@@ -60,21 +60,21 @@
 
 - (void)setStyle:(CALDayCollectionViewCellDayUIStyle)style
 {
-    if (_style == style) {
+    if (self.style == style) {
         return;
     }
     
     if (style == CALDayCollectionViewCellDayUIStyleIOS7) {
-        _separatorLayer = [[CALayer alloc] init];
-        [_separatorLayer setBackgroundColor:[UIColor lightGrayColor].CGColor];
-        [_separatorLayer setFrame:CGRectMake(-2.0f, 0.0f, 46.0f, 1.0f)];
-        [self.layer addSublayer:_separatorLayer];
+        self.separatorLayer = [[CALayer alloc] init];
+        [self.separatorLayer setBackgroundColor:[UIColor lightGrayColor].CGColor];
+        [self.separatorLayer setFrame:CGRectMake(-2.0f, 0.0f, 46.0f, 1.0f)];
+        [self.layer addSublayer:self.separatorLayer];
         self.contentViewColor = [UIColor clearColor];
         self.clipsToBounds = NO;
     }
     else {
-        [_separatorLayer removeFromSuperlayer];
-        _separatorLayer = nil;
+        [self.separatorLayer removeFromSuperlayer];
+        self.separatorLayer = nil;
         self.clipsToBounds = YES;
         self.contentViewColor = [[UIColor blueColor] colorWithAlphaComponent:0.05f];
     }
